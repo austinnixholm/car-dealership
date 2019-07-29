@@ -1,0 +1,49 @@
+﻿@model CarDealershipAPI.Models.ViewModels.AddEditUserViewModel
+@{
+    ViewBag.Title = "AddEditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@RenderBody()
+@using (Html.BeginForm(@Model.ViewModelType.ToLower().Equals("add") ? "AddUser" : "EditUser", "Admin", FormMethod.Post))
+{
+    <div class="row">
+        @Html.ValidationSummary(true)
+    </div>
+    <h2>@Model.ViewModelType User</h2>
+    @Html.HiddenFor(m => m.User.StaffID)
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6">
+                    <label for="userName">Name: </label>
+                    <div id="userName">@Html.TextBoxFor(m => m.User.Name, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="userEmail">Email: </label>
+                    <div id="userEmail">@Html.TextBoxFor(m => m.User.Email, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="userRoles">Role: </label>
+                    <div id="userRoles">@Html.DropDownListFor(m => m.User.StaffRoleID, Model.Roles, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="userPassword">Password: </label>
+                    <div id="userPassword">@Html.PasswordFor(m => m.User.Password, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="userPasswordConfirm">Confirm Password: </label>
+                    <div id="userPasswordConfirm">@Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <button class="btn btn-primary ml-3" type="submit">Save</button>
+                @Html.ActionLink("Cancel", "Users", "Admin", null, new {@class="btn btn-secondary ml-2"})
+            </div>
+        </div>
+    </div>
+}

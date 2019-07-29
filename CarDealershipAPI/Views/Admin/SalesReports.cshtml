@@ -1,0 +1,40 @@
+﻿@model CarDealershipAPI.Models.ViewModels.SaleReportsViewModel
+@{
+    ViewBag.Title = "SalesReports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-9">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <h4 class="ml-2">Filters</h4>
+                    </div>
+                    <div class="row">
+                        <label for="userDropdown" class="mt-1">User </label>
+                        <div id="userDropdown">@Html.DropDownListFor(m => m.SelectedStaffID, Model.Users, new {@class = "form-control ml-2"})</div>
+                        <label for="fromDate" class="ml-4 mt-1">From Date </label>
+                        <input class="ml-2 form-control" type="text" id="fromDate" style="width: 150px" placeholder="yyyy-mm-dd"/>
+                        <label for="toDate" class="ml-2 mt-1">To Date </label>
+                        <input class="ml-2 form-control" type="text" id="toDate" style="width: 150px" placeholder="yyyy-mm-dd"/>
+                        <button id="submitSaleFilter" class="btn btn-secondary ml-2">Search</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2" id="salesSearchResults">
+        <table class="table table-striped mt-1">
+            <thead>
+            <td>User</td>
+            <td>Total Sales</td>
+            <td>Total Vehicles</td>
+            </thead>
+            <tbody id="salesResultsTableBodyContent">
+            </tbody>
+        </table>
+    </div>
+</div>

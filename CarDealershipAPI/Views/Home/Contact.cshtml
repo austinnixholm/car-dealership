@@ -1,0 +1,71 @@
+﻿@model CarDealershipAPI.Models.Customer.Contact
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-10">
+    <div class="row">
+        <h2>Contact Us</h2>
+    </div>
+    <div class="row">
+    <div class="col-6">
+        @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col">
+                    <label for="contactName">Name: </label>
+                    <div id="contactName">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="contactEmail">Email: </label>
+                    <div id="contactEmail">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="contactPhone">Phone: </label>
+                    <div id="contactPhone">
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="contactMessage">Message: </label>
+                    <div id="contactMessage">
+                        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", required = "required", style = "width: 100%; height: 180px" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-secondary ml-3 mt-2">Submit</button>
+            </div>
+        }
+    </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <img src="~/Content/images/location.png"/>
+                </div>
+                <div class="col ml-3 mt-1">
+                    <div class="row">
+                        <p>2370 Highway 100 South<br/>St Louis Park, MN 55416</p>
+                    </div>
+                    <div class="row">
+                        <p>Sales: +1 (555) 555-5555<br/>Service: +1 (555) 555-5556</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

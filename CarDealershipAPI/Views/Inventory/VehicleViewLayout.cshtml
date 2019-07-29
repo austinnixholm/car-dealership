@@ -1,0 +1,65 @@
+﻿@model CarDealershipAPI.Models.ViewModels.VehicleViewModel
+@{
+    ViewBag.Title = "Vehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        footer {
+            display: none;
+        }
+        foot {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<h2 class="ml-3">Vehicle Details</h2>
+
+<div id="vehicleData" style="display: block">
+    
+    <div class="col-12">
+        <div class="card mt-1" style="width: 100%;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="row">
+                            <p class="ml-4">@Model.Vehicle.Year @Model.Make.MakeName @Model.Model.ModelName</p>
+                        </div>
+                        <div class="row">
+                            <img src="@Model.Vehicle.PicturePath" width="65%", height="65%"/>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <p><b>Body Style: </b>@Model.BodyStyle.Style</p>
+                        <p><b>Transmission: </b>@Model.Vehicle.Transmission</p>
+                        <p><b>Color: </b>@Model.Vehicle.Color</p>
+                    </div>
+                    <div class="col-3">
+                        <p><b>Interior: </b>@Model.Interior.InteriorName</p>
+                        <p><b>Mileage: </b>@Model.Vehicle.Mileage</p>
+                        <p><b>VIN #: </b>@Model.Vehicle.VIN</p>
+                    </div>
+                    <div class="col-3">
+                        <p><b>Sale Price: </b>$@Model.Vehicle.SalePrice</p>
+                        <p><b>MSRP: </b>$@Model.Vehicle.MSRP</p>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <p><b>Description: </b>@Model.Vehicle.Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @RenderBody()
+    <foot class="text-center">
+        <hr/>
+        <p>Austin Nixholm &copy; 2019 All rights reserved.</p>
+    </foot>
+</div>
+

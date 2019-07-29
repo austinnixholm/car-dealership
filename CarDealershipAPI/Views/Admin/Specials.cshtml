@@ -1,0 +1,72 @@
+﻿@model CarDealershipAPI.Models.ViewModels.SpecialViewModel
+@{
+    ViewBag.Title = "Specials";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-4">
+        <h2 class="text-center">Specials</h2>
+    </div>
+</div>
+
+@using (Html.BeginForm("Specials", "Admin", FormMethod.Post))
+{
+    
+    <div clas="row">
+        <div class="col-10 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    @Html.ValidationSummary(true)
+                    <div class="row">
+                        <div class="col">
+                            <label for="specialTitle" class="mr-1 mt-1">Title: </label>
+                            <div id="specialTitle">@Html.TextBoxFor(m => m.NewSpecial.SpecialTitle, new { @class = "form-control" })</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="specialDescription" class="mr-1 mt-1">Description: </label>
+                            <div id="specialDescription">@Html.TextAreaFor(m => m.NewSpecial.SpecialDescription, new { @class = "form-control", style = "width:300px; height: 115px;" })</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button type="submit" class="btn btn-secondary ml-3 mt-1">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@for (int i = 0; i < Model.Specials.Count; i++)
+{
+    <div class="row">
+        <div class="col-10 mx-auto">
+            <div class="card mt-1" style="width: 100%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="~/Content/images/dollarsign.png" style="width: 65%; height: 65%;" alt="special image"/>
+                        </div>
+                        <div class="col-8">
+                            <div clas="row">
+                                <h4 class="text-center">@Model.Specials.ElementAt(i).SpecialTitle</h4>
+                            </div>
+                            <div class="row">
+                                <p>@Model.Specials.ElementAt(i).SpecialDescription</p>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row ml-5">
+                                @Html.ActionLink("Delete", "DeleteSpecial", "Admin", new {specialID = Model.Specials[i].SpecialID}, new {@class = "btn btn-danger"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+}

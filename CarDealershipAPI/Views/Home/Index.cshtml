@@ -1,0 +1,43 @@
+﻿@model CarDealershipAPI.Models.ViewModels.HomeIndexViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style>
+        .card-hover:hover {
+            border-color: rgb(0, 110, 155)
+        }
+    </style>
+</head>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">@Html.ActionLink(Model.Special.SpecialTitle, "Specials", "Home", new {style="font-family: 'Muli',serif"})</h1>
+        <p class="lead text-center">@Model.Special.SpecialDescription</p>
+        
+    </div>
+</div>
+
+<div class="row">
+    <h2 class="ml-2">Featured Vehicles</h2>
+</div>
+<div class="row">
+    @for (int i = 0; i < Model.Vehicles.Count; i++)
+    {
+        if (i % 4 == 0 && i != 0)
+        {
+            @:</div><div class="row mt-1">
+        }
+        <div class="col-sm-3">
+            <div class="card card-hover vehicleCard" id="@Model.Vehicles[i].Vehicle.VehicleID" style="width: 16rem;">
+                <img class="card-img-top noselect" src="@Model.Vehicles[i].Vehicle.PicturePath" alt="Card image cap" class="w-auto h-auto">
+                <div class="card-body noselect">
+                    <p class="card-text text-center noselect">@Model.Vehicles[i].Vehicle.Year @Model.Vehicles[i].Make.MakeName @Model.Vehicles[i].Model.ModelName</p>
+                    <p class="card-text text-center noselect">$@Model.Vehicles[i].Vehicle.MSRP</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-3 mx-auto">
+        <div class="row mx-auto">
+            <h2 class="ml-3">Admin Index</h2>
+
+        </div>
+        <div class="row mt-1 mx-auto">
+            <div class="col-6">
+                <div class="row">
+                    @Html.ActionLink("Users List", "Users", "Admin")
+                </div>
+                <div class="row">
+                    @Html.ActionLink("Add a User", "AddUser", "Admin")
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    @Html.ActionLink("Vehicle List", "Vehicles", "Admin")
+                </div>
+                <div class="row">
+                    @Html.ActionLink("Add a Vehicle", "AddVehicle", "Admin")
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1 mx-auto">
+            <div class="col-6">
+                <div class="row">
+                    @Html.ActionLink("Makes", "Makes", "Admin")
+                </div>
+                <div class="row">
+                    @Html.ActionLink("Models", "Models", "Admin")
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    @Html.ActionLink("Reports", "Reports", "Admin")
+                </div>
+                <div class="row">
+                    @Html.ActionLink("Manage Specials", "Specials", "Admin")
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

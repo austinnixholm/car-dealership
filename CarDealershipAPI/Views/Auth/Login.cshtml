@@ -1,0 +1,21 @@
+﻿@model CarDealershipAPI.Models.Auth.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-5 mx-auto">
+        <h2>Staff Login</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            @Html.EditorForModel(new {})
+            <p>
+                <button type="submit" class="mt-2">Login</button>
+            </p>
+        }
+    </div>
+</div>
+
+

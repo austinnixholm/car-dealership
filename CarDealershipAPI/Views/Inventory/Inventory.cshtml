@@ -1,0 +1,72 @@
+﻿@using CarDealershipAPI.Models.VehicleModels
+@model CarDealershipAPI.Models.ViewModels.InventoryViewModel
+@{
+    ViewBag.Title = "NewInventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.InventoryType@(!Model.InventoryType.Equals("Sales") ? " Vehicles" : "")</h2>
+
+<head>
+    <style>
+        input[type="text"] {
+            text-align: center;
+        }
+        #resetSearchTerms:hover {
+            text-decoration: underline;
+            color: rgb(0, 0, 220);
+        }
+        #resetSearchTerms {
+            color: blue;
+        }
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+@RenderBody()
+<input type="hidden" value="@Model.InventoryType" id="inventoryType"/>
+<div class="row">
+    <div class="col-12">
+        <div class="card mt-1" style="width: 100%;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <h5 class="card-text ml-5 noselect">Quick Search</h5>
+                        <input type="text" id="searchTerm" placeholder="Enter Make, model, or year" class="w-75 mt-2"/>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-2 text-center">
+                            <label for="minPrice" class="noselect">Price</label>
+                            <input type="text" id="minPrice" placeholder="No Min" class="w-25"/>
+                            <input type="text" id="maxPrice" placeholder="No Max" class="w-25 ml-3"/>
+                        </div>
+                        <div class="justify-content-center text-center">
+                            <a id="resetSearchTerms" style="font-size:13px" class="noselect mr-1">Reset</a> <br />
+                            <button class="btn btn-primary"id="submitSearch" style="width: 70%">Search</button>
+
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-4 text-center">
+                            <label for="minYear" class="noselect">Year</label>
+                            <input type="text" id="minYear" placeholder="No Min" class="w-25"/>
+                            <input type="text" id="maxYear" placeholder="No Max" class="w-25 ml-3"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="searchResultsSection" style="display:none">
+    <div class="row">
+        <h3 class="ml-3 mt-2">Search Results</h3>
+    </div>
+</div>
+

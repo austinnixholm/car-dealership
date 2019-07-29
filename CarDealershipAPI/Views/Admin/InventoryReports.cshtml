@@ -1,0 +1,65 @@
+﻿@model CarDealershipAPI.Models.ViewModels.InventoryReportViewModel
+@{
+    ViewBag.Title = "InventoryReports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-8">
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <h4>New Vehicle Reports</h4>
+            </div>
+            <table class="table table-striped mt-1">
+                <thead>
+                <td>Year</td>
+                <td>Make</td>
+                <td>Model</td>
+                <td>Count</td>
+                <td>Stock Value</td>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.NewVehicleReports.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.NewVehicleReports[i].VehicleYear</td>
+                            <td>@Model.NewVehicleReports[i].MakeName</td>
+                            <td>@Model.NewVehicleReports[i].ModelName</td>
+                            <td>@Model.NewVehicleReports[i].VehicleCount</td>
+                            <td>$@Model.NewVehicleReports[i].StockValue</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-8">
+            <div class="row">
+                <h4>Used Vehicle Reports</h4>
+            </div>
+            <table class="table table-striped mt-1">
+                <thead>
+                <td>Year</td>
+                <td>Make</td>
+                <td>Model</td>
+                <td>Count</td>
+                <td>Stock Value</td>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.UsedVehicleReports.Count; i++)
+                    {
+                    <tr>
+                        <td>@Model.UsedVehicleReports[i].VehicleYear</td>
+                        <td>@Model.UsedVehicleReports[i].MakeName</td>
+                        <td>@Model.UsedVehicleReports[i].ModelName</td>
+                        <td>@Model.UsedVehicleReports[i].VehicleCount</td>
+                        <td>$@Model.UsedVehicleReports[i].StockValue</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

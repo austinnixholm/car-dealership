@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Car Dealership</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="container body-content">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:100% !important">
+                    <div class="collapse navbar-collapse" id="navBarContent">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <img src="~/Content/images/home.png" width="18" , height="16" class="mb-1" />
+                                @Html.ActionLink("Home", "Index", "Home") <span style="padding-left:2px"> |</span>
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("New Inventory", "NewInventory", "Inventory", null, new { @class = "ml-2 mr-1" }) |
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Used Inventory", "UsedInventory", "Inventory", null, new { @class = "ml-2 mr-1" }) |
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Specials", "Specials", "Home", null, new { @class = "ml-2 mr-1" }) |
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "ml-2 mr-1" })
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.IsInRole("Sales") || User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <span style="padding-left:2px"> |</span>@Html.ActionLink("Sales", "Index", "Sales", null, new { @class = "ml-2 mr-1" })
+                                    </li>
+                                }
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <span style="padding-left:2px"> |</span>@Html.ActionLink("Admin", "Index", "Admin", null, new { @class = "ml-2 mr-1" })
+                                    </li>
+                                }
+                                <li class="nav-item">
+                                    <span style="padding-left:2px"> |</span>@Html.ActionLink("Logout", "Logout", "Auth", null, new { @class = "ml-2 mr-1" })
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+                <hr />
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer class="text-center justify-content-center">
+            <hr />
+            <p>Austin Nixholm &copy; @DateTime.Now.Year All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="../../Scripts/dealership/inventory.js"></script>
+    <script src="../../Scripts/dealership/addeditvehicle.js"></script>
+    <script src="../../Scripts/dealership/salereports.js"></script>
+    <script src="../../Scripts/dealership/homeindex.js"></script>
+</body>
+</html>

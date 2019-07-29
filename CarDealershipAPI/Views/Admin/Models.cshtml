@@ -1,0 +1,49 @@
+﻿@model CarDealershipAPI.Models.ViewModels.ModelListViewModel
+@{
+    ViewBag.Title = "Models";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-10">
+    <h2>Models</h2>
+    @using (Html.BeginForm("Models", "Admin", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <div clas="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <label for="makeTextBox" class="mr-2 mt-1">New Model</label>
+                            @Html.TextBoxFor(m=>m.NewModel.ModelName, new {@class="form-control"})
+                            <div class="ml-4">@Html.DropDownListFor(m=>m.SelectedMakeID, Model.MakesList, new {@class="form-control"})</div>
+                            <div class="ml-2">@Html.DropDownListFor(m=>m.SelectedBodyStyleID, Model.BodyStylesList, new {@class="form-control"})</div>
+                            <button type="submit" class="btn btn-secondary ml-4">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table table-striped mt-1">
+        <thead>
+        <td>Make</td>
+        <td>Model</td>
+        <td>Body Style</td>
+        <td>Date Added</td>
+        <td>User</td>
+        </thead>
+        <tbody>
+        @for (int i = 0; i < Model.ViewModels.Count; i++)
+        {
+            <tr>
+                <td>@Model.ViewModels[i].Make</td>
+                <td>@Model.ViewModels[i].Model.ModelName</td>
+                <td>@Model.ViewModels[i].BodyStyle</td>
+                <td>@Model.ViewModels[i].Model.DateAdded.ToString("MM/dd/yyyy")</td>
+                <td>@Model.ViewModels[i].StaffMemberEmail</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+

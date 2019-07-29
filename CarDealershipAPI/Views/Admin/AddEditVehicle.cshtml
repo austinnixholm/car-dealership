@@ -1,0 +1,125 @@
+﻿@model CarDealershipAPI.Models.ViewModels.AddEditVehicleViewModel
+@{
+    ViewBag.Title = "AddEditVehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@RenderBody()
+
+@Html.ValidationSummary(true)
+
+<div class="row">
+    @using (Html.BeginForm(Model.ViewModelType.ToLower().Equals("edit") ? "EditVehicle" : "AddVehicle", "Admin", FormMethod.Post,
+        new { enctype = "multipart/form-data", id = "frmUpload" }))
+    {
+        <input class="vehicleID" name="VehicleID" value="@Model.VehicleID" type="hidden"/>
+        <div id="modelID" style="display:none">@Model.ModelID</div>                                                                              
+        @Html.HiddenFor(m=>m.ModelID, new {id= "addEditModelID", @class="model"})
+
+        <div class="col-10 mx-auto">
+            <div class="row">
+                <h2>@Model.ViewModelType Vehicle</h2>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="vehicleMakes">Make: </label>
+                    <div id="vehicleMakes">@Html.DropDownListFor(m => m.MakeID, Model.Makes, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6" id="modelDiv">
+                    <label for="models">Model: </label>
+                    <select id="modelDropdown" class="form-control" name="ModelID"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="vehicleTypes">Type: </label>
+                    <div id="vehicleTypes">@Html.DropDownListFor(m => m.Type, Model.Types, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="vehicleBodyStyles">Type: </label>
+                    <div id="vehicleBodyStyles">@Html.DropDownListFor(m => m.BodyStyleID, Model.BodyStyles, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="vehicleYear">Year: </label>
+                    <div id="vehicleYear">@Html.TextBoxFor(m => m.Year, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="vehicleTransmissions">Transmission: </label>
+                    <div id="vehicleTransmissions">@Html.DropDownListFor(m => m.TransmissionID, Model.Transmissions, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="vehicleColors">Color: </label>
+                    <div id="vehicleColors">@Html.DropDownListFor(m => m.ColorID, Model.Colors, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="vehicleInteriors">Interior: </label>
+                    <div id="vehicleInteriors">@Html.DropDownListFor(m => m.InteriorID, Model.Interiors, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="vehicleMileage">Mileage: </label>
+                    <div id="vehicleMileage">@Html.TextBoxFor(m => m.Mileage, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="vehicleVin">VIN #: </label>
+                    <div id="vehicleVin">@Html.TextBoxFor(m => m.Vin, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="vehicleMSRP">MSRP: </label>
+                    <div id="vehicleMSRP">@Html.TextBoxFor(m => m.MSRP, new {@class = "form-control"})</div>
+                </div>
+                <div class="col-6">
+                    <label for="vehicleSalePrice">Sale Price: </label>
+                    <div id="vehicleSalePrice">@Html.TextBoxFor(m => m.SalePrice, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="vehicleDescription">Description: </label>
+                    <div id="vehicleDescription">@Html.TextAreaFor(m => m.Description, new {@class = "form-control"})</div>
+                </div>
+            </div>
+            @if (Model.ViewModelType.ToLower().Equals("edit"))
+            {
+                @Html.HiddenFor(m=>m.PicturePath)
+                <div class="row mt-1">
+                    <div class="col-8">
+                        <img src="@Model.PicturePath" width="50%", height="50%"/>
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col-8">
+                    <label for="fileUpload">Picture:</label>
+
+                    @Html.TextBoxFor(m => m.UploadedFile,
+                        new {type = "file", @class = "form-control", id = "fileUpload", name = "UploadedFile", style = "max-width: 38%; max-height: 100%; height50px"})
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 mt-2">
+                    <label for="featureVehicle">Feature this vehicle: </label>
+                    @Html.EditorFor(m=>m.FeatureVehicle)
+                </div>
+            </div>
+            <div class="row">
+                @if (Model.ViewModelType.ToLower().Equals("edit"))
+                {
+                    <a class="btn btn-danger mt-2 ml-3" id="deleteVehicle" style="color:white">Delete</a>
+                    <button class="btn btn-primary ml-2 mt-2" type="submit" id="submit">Save</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary ml-3 mt-2" type="submit" id="submit">Save</button>
+                }
+            </div>
+
+        </div>
+    }
+</div>
