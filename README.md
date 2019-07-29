@@ -3,6 +3,7 @@ This website is intended to function as a car dealership, with the ability for s
 Staff members can log in to the website and have different staff roles.
 
 Sales Representatives can view the entire inventory, and make vehicle purchases for customers.
+
 Admins can add/edit vehicles, vehicle models, makes, staff member information, view sales/inventory reports, and more.
 
 A default user can browse the dealership's specials, used/new vehicles, view featured vehicles, and use the contact us form.
